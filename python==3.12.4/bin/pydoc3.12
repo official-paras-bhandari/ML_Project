@@ -1,0 +1,5 @@
+#!/home/parash/ML_Project/python==3.12.4/bin/python3.12
+
+import pydoc
+if __name__ == '__main__':
+    pydoc.cli()

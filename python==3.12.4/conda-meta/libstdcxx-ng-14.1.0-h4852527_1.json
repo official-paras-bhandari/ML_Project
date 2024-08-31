@@ -1,0 +1,31 @@
+{
+  "build": "h4852527_1",
+  "build_number": 1,
+  "channel": "https://conda.anaconda.org/conda-forge/linux-64",
+  "constrains": [],
+  "depends": [
+    "libstdcxx 14.1.0 hc0a3c3a_1"
+  ],
+  "extracted_package_dir": "/home/parash/miniconda3/pkgs/libstdcxx-ng-14.1.0-h4852527_1",
+  "files": [],
+  "fn": "libstdcxx-ng-14.1.0-h4852527_1.conda",
+  "license": "GPL-3.0-only WITH GCC-exception-3.1",
+  "link": {
+    "source": "/home/parash/miniconda3/pkgs/libstdcxx-ng-14.1.0-h4852527_1",
+    "type": 1
+  },
+  "md5": "bd2598399a70bb86d8218e95548d735e",
+  "name": "libstdcxx-ng",
+  "package_tarball_full_path": "/home/parash/miniconda3/pkgs/libstdcxx-ng-14.1.0-h4852527_1.conda",
+  "paths_data": {
+    "paths": [],
+    "paths_version": 1
+  },
+  "requested_spec": "None",
+  "sha256": "a2dc44f97290740cc187bfe94ce543e6eb3c2ea8964d99f189a1d8c97b419b8c",
+  "size": 52219,
+  "subdir": "linux-64",
+  "timestamp": 1724801897000,
+  "url": "https://conda.anaconda.org/conda-forge/linux-64/libstdcxx-ng-14.1.0-h4852527_1.conda",
+  "version": "14.1.0"
+}
