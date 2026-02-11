@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} — Assignment Generated</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Assignment Generated</h1>
+            <p class="subtitle">Your assignment is ready for download</p>
+        </header>
+
+        <!-- Summary Card -->
+        <div class="result-card">
+            <h2>{{ title }}</h2>
+            <div class="result-meta">
+                <div class="meta-item">
+                    <span class="meta-label">Type</span>
+                    <span class="meta-value">{{ document_type }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Words</span>
+                    <span class="meta-value">~{{ word_count }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Sources</span>
+                    <span class="meta-value">{{ source_count }}</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Citation Style</span>
+                    <span class="meta-value">{{ citation_style }}</span>
+                </div>
+            </div>
+
+            <!-- Download Buttons -->
+            <div class="download-buttons">
+                {% if docx_file %}
+                <a href="{{ url_for('download', filename=docx_file) }}" class="btn btn-primary">
+                    Download DOCX
+                </a>
+                {% endif %}
+                {% if pdf_file %}
+                <a href="{{ url_for('download', filename=pdf_file) }}" class="btn btn-secondary">
+                    Download PDF
+                </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Content Preview -->
+        <div class="preview-section">
+            <h2>Content Preview</h2>
+
+            {% for section in sections %}
+            <div class="preview-block">
+                <h3>{{ section.heading }}</h3>
+                <div class="preview-content">
+                    {% for paragraph in section.content.split('\n\n') %}
+                    {% if paragraph.strip() %}
+                    <p>{{ paragraph.strip() }}</p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Bibliography Preview -->
+            {% if bibliography %}
+            <div class="preview-block">
+                <h3>References</h3>
+                <div class="bibliography">
+                    {% for ref in bibliography %}
+                    <p class="bib-entry">{{ ref }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <a href="{{ url_for('index') }}" class="btn btn-outline">Generate Another Assignment</a>
+        </div>
+
+        <footer>
+            <p>Academic Assignment Generator &mdash; Built for educational purposes</p>
+        </footer>
+    </div>
+</body>
+</html>

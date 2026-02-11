@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Assignment Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Academic Assignment Generator</h1>
+            <p class="subtitle">Research-backed, properly cited academic work — ready to download</p>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for category, message in messages %}
+            <div class="flash flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <form action="/generate" method="POST" enctype="multipart/form-data" id="genForm">
+            <!-- Topic Input -->
+            <div class="form-group">
+                <label for="topic">Assignment Topic <span class="required">*</span></label>
+                <input type="text" id="topic" name="topic" required
+                       placeholder="e.g., The Impact of Artificial Intelligence on Healthcare"
+                       maxlength="300">
+                <span class="hint">Enter your essay/report topic or research question</span>
+            </div>
+
+            <!-- Options Row -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="document_type">Document Type</label>
+                    <select id="document_type" name="document_type">
+                        <option value="essay">Essay</option>
+                        <option value="report">Report</option>
+                        <option value="research_paper">Research Paper</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="citation_style">Citation Style</label>
+                    <select id="citation_style" name="citation_style">
+                        <option value="apa">APA (7th Edition)</option>
+                        <option value="mla">MLA (9th Edition)</option>
+                        <option value="harvard">Harvard</option>
+                        <option value="chicago">Chicago (Author-Date)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="word_count">Word Count</label>
+                    <input type="number" id="word_count" name="word_count"
+                           value="2000" min="500" max="10000" step="100">
+                    <span class="hint">500 – 10,000 words</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="num_sources">Number of Sources</label>
+                    <input type="number" id="num_sources" name="num_sources"
+                           value="8" min="3" max="20">
+                    <span class="hint">3 – 20 academic sources</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="output_format">Output Format</label>
+                <select id="output_format" name="output_format">
+                    <option value="docx">DOCX (Word)</option>
+                    <option value="pdf">PDF</option>
+                    <option value="both">Both DOCX & PDF</option>
+                </select>
+            </div>
+
+            <!-- File Upload -->
+            <div class="form-group">
+                <label for="reference_file">Upload Reference Material (optional)</label>
+                <div class="file-upload" id="dropZone">
+                    <input type="file" id="reference_file" name="reference_file"
+                           accept=".pdf,.txt,.doc,.docx">
+                    <div class="file-upload-label">
+                        <span class="file-icon">&#128196;</span>
+                        <span>Drag & drop a file here or <strong>click to browse</strong></span>
+                        <span class="hint">PDF, TXT, DOC, DOCX — Max 16 MB</span>
+                    </div>
+                    <span id="fileName" class="file-name"></span>
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+                <span class="btn-text">Generate Assignment</span>
+                <span class="btn-loading" style="display:none;">
+                    <span class="spinner"></span> Researching & Writing...
+                </span>
+            </button>
+        </form>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Enter Your Topic</h3>
+                    <p>Provide your assignment topic or research question. Optionally upload reference materials.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Real Research</h3>
+                    <p>The system searches CrossRef, Semantic Scholar, and other academic databases for real, citable sources.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>AI-Powered Writing</h3>
+                    <p>Generates a complete, humanized academic document with proper in-text citations throughout.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Download</h3>
+                    <p>Get your polished assignment as a professionally formatted DOCX or PDF, ready to submit.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>Academic Assignment Generator &mdash; Built for educational purposes</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
